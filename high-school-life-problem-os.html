@@ -1,0 +1,54 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>潮中 High School OS</title><style>
+:root{--ink:#15231e;--paper:#f4f0e6;--lime:#d7f254;--coral:#f17054}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,"Noto Sans TC",sans-serif;background-image:linear-gradient(#d8d5cc55 1px,transparent 1px),linear-gradient(90deg,#d8d5cc55 1px,transparent 1px);background-size:42px 42px}nav{padding:18px 5vw;border-bottom:1px solid;position:sticky;top:0;background:var(--paper);z-index:2;font-weight:900}nav b{background:var(--ink);color:var(--lime);padding:10px;border-radius:50%;margin-right:10px}.hero{padding:9vh 7vw 7vh}.eyebrow,small{font-size:11px;font-weight:900;letter-spacing:.15em}.hero h1{font-size:clamp(46px,7vw,92px);line-height:.98;letter-spacing:-.06em;margin:18px 0}.hero h1 em{font-style:normal;color:var(--coral)}.lead{font-size:20px;line-height:1.55;max-width:760px}.hero button,.card button{border:1px solid var(--ink);background:var(--ink);color:white;padding:11px 15px;border-radius:99px;font-weight:800;cursor:pointer}.flow{display:grid;grid-template-columns:repeat(9,1fr);background:var(--ink);gap:1px;border-block:1px solid}.flow span{min-height:85px;background:var(--paper);padding:12px;font-size:11px;font-weight:900;display:flex;align-items:end}.tools{padding:55px 5vw 20px}.tools h2{font-size:clamp(35px,5vw,65px);margin:8px 0}.tools input{width:min(520px,100%);padding:15px;border:1px solid;font-size:16px;background:#fff}.chips{display:flex;flex-wrap:wrap;gap:7px;margin:20px 0}.chips button{padding:8px 12px;border:1px solid;border-radius:99px;background:transparent;font-weight:800;cursor:pointer}.chips button.on{background:var(--ink);color:#fff}.grid{padding:10px 5vw 80px;display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.card{background:#faf8f1;border:1px solid;padding:20px;box-shadow:5px 5px 0;min-height:310px;display:flex;flex-direction:column}.card.done{background:#eaf5bb}.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:900}.card h3{font-size:24px;margin:28px 0 8px}.en{color:#53615a;line-height:1.45}.fix{margin-top:auto;background:var(--lime);padding:14px}.fix b{display:block;margin:7px 0}.fix p{margin:0;font-size:13px}.bottom{text-align:right;margin-top:13px}.bottom button{background:transparent;color:var(--ink)}.end{background:var(--ink);color:#fff;padding:70px 7vw}.end h2{font-size:clamp(30px,5vw,60px)}@media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:620px){.flow{overflow:auto;grid-template-columns:repeat(9,125px)}.grid{grid-template-columns:1fr}.hero,.tools,.grid{padding-left:20px;padding-right:20px}}
+</style></head><body><nav><b>CH</b>潮中 High School OS · Bilingual</nav><section class="hero"><div class="eyebrow">FROM GUIDED LEARNING TO SELF-DIRECTION</div><h1>不是換一間學校，<br><em>是升級你的學習系統。</em></h1><p class="lead">Build a system to manage your learning, time, attention, emotions, relationships, and choices.</p><button onclick="say('High school gives you more freedom, more complexity, faster learning, more competition, and less external control. Build a self-updating system.')">▶ Listen to overview</button></section><div class="flow" id="flow"></div><section class="tools"><small>50 PROBLEM DIAGNOSES</small><h2>你的問題，就是資料。</h2><input id="q" placeholder="搜尋問題 / Search problems"><div class="chips" id="chips"></div></section><main class="grid" id="grid"></main><section class="end"><small>THE THREE-YEAR FORMULA</small><h2>高一建立系統 → 高二強化能力 → 高三整合輸出</h2><p>The GSAT is simply one large retest of your system.</p></section><script>
+const z=`適應|剛進潮中很陌生|Everything feels unfamiliar at your new school.|每天搞懂1件事|Learn one new thing each day.
+適應|找不到教室或處室|You cannot find classrooms or school offices.|記住5個核心地點|Memorize five essential locations.
+關係|不認識同學|You do not know your classmates yet.|每天認識1人|Meet one person each day.
+關係|害怕交不到朋友|You worry that you will not make friends.|主動說一句話|Start with one friendly sentence.
+關係|國中好友不同校|Your old friends attend other schools.|找2個能聊天同學|Find two classmates you can talk with.
+適應|不敢問老師|You are afraid to ask teachers questions.|每週問1個問題|Ask one question every week.
+情緒|覺得同學都很厲害|Everyone else seems more capable.|比較自己的進步|Compare yourself with your past self.
+學習|第一次考差|You perform poorly on your first exam.|先分析錯因|Analyze before blaming yourself.
+學習|成績突然下降|Your grades suddenly drop.|找最弱能力節點|Find your weakest skill node.
+英文|英文單字暴增|The amount of English vocabulary explodes.|每天固定少量|Study a small fixed amount daily.
+英文|英文文章看不懂|You cannot understand English passages.|先抓主旨|Identify the main idea first.
+英文|文法學很多仍不會題目|You know rules but cannot answer questions.|學完立刻做題|Practice immediately after learning.
+英文|英文作文不知道怎麼寫|You cannot start an English essay.|先寫一個好句|Write one good sentence first.
+學習|數學開始跟不上|You begin falling behind in mathematics.|當天清一個卡點|Clear one obstacle that day.
+學習|自然科突然變難|Science suddenly feels much harder.|每章畫因果圖|Draw a causal map for each chapter.
+學習|國文讀很多沒效果|Reading more Chinese does not improve results.|每次找一種錯因|Find one error type at a time.
+時間|科目太多|Too many subjects compete for attention.|每天列Top 3|Choose your daily top three.
+時間|作業寫不完|You cannot finish your homework.|先做最難一科|Do the hardest subject first.
+專注|每天都很忙|You are busy but produce little.|每天45分鐘深度時間|Create a 45-minute deep-work block.
+健康|上課想睡|You feel sleepy in class.|固定起床時間|Keep a consistent wake-up time.
+手機|晚上一直滑手機|You keep scrolling at night.|手機不進床|Keep your phone away from bed.
+手機|上課忍不住看手機|You cannot resist checking your phone.|上課物理隔離手機|Physically separate your phone.
+手機|短影音停不下來|You cannot stop watching short videos.|設固定使用時段|Set a fixed viewing window.
+時間|回家不想讀書|You do not feel like studying after school.|先休息20分鐘|Rest for twenty minutes first.
+動機|一想到讀書就累|Studying already feels exhausting.|只做5分鐘|Commit to only five minutes.
+動機|常常拖延|You procrastinate often.|先做第一題|Start with the first question.
+學習|考前才開始讀|You only study before exams.|每天回顧10分鐘|Review for ten minutes daily.
+學習|讀過卻忘記|You forget what you have read.|關書主動提取|Close the book and retrieve.
+學習|錯題一直錯|You repeat the same mistakes.|每題寫一個錯因|Write one cause for every error.
+學習|不知道弱點在哪|You do not know your weaknesses.|每週做小測|Take a short quiz weekly.
+情緒|看到分數就難過|A score immediately makes you feel bad.|只問錯在哪|Ask where you went wrong.
+情緒|被老師糾正很挫折|Teacher corrections feel discouraging.|先找可用資訊|Extract useful information first.
+情緒|不敢承認不會|You fear admitting what you do not know.|每天抓1個不會|Identify one gap each day.
+自主|父母一直提醒很煩|Parental reminders feel annoying.|自己提出讀書計畫|Propose your own study plan.
+自主|老師不像國中一直盯|Teachers no longer monitor you closely.|自己記作業考試|Track assignments and tests.
+自主|自由時間增加反而亂掉|More freedom makes life disorganized.|建立固定放學流程|Create an after-school routine.
+探索|社團很多不知道選什麼|You do not know which club to choose.|問想培養什麼能力|Ask which skill you want to grow.
+關係|很在意同學眼光|You care too much about others' opinions.|做自己認同的事|Do one thing you personally value.
+關係|害怕被排擠|You fear social exclusion.|保留自己的界線|Keep your personal boundaries.
+關係|為朋友影響讀書|Friendships interfere with study goals.|保護固定讀書時間|Protect a no-social study block.
+情緒|情緒不好就不讀|A bad mood stops you from studying.|狀態差也做最低量|Do the minimum on bad days.
+情緒|壓力大就想逃|Stress makes you want to escape.|切成最小一步|Break it into the smallest step.
+自主|覺得自己不適合高中|You feel high school is not for you.|問哪個能力不足|Ask which skill needs work.
+目標|不知道為何讀書|You do not know why you study.|找一個三年後目標|Choose one three-year goal.
+目標|開始擔心學測|You already worry about the GSAT.|只處理高一能力|Focus on first-year capabilities.
+探索|不知道自己適合什麼|You do not know what suits you.|增加嘗試樣本|Run more small experiments.
+探索|很怕選錯方向|You fear choosing the wrong direction.|小規模試錯|Run small reversible trials.
+情緒|一失敗就想放棄|One failure makes you want to quit.|問哪個假設錯了|Ask which assumption was wrong.
+目標|覺得高中就是一直考試|High school seems like endless tests.|每月盤點新增能力|Review new skills monthly.
+自主|不知道高一真正要做什麼|You do not know the purpose of first year.|建立High School OS|Build your own High School OS.`.split('\n').map((r,i)=>{let a=r.split('|');return{id:i+1,c:a[0],zh:a[1],en:a[2],f:a[3],fe:a[4]}});let cat='全部',done=JSON.parse(localStorage.getItem('chos-index')||'[]');const say=t=>{speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=.86;speechSynthesis.speak(u)};flow.innerHTML=['Problem','Pattern','Mechanism','Bottleneck','Minimum Intervention','Action','Feedback','Model Update','Retest'].map(x=>`<span>${x}</span>`).join('');const cats=['全部',...new Set(z.map(x=>x.c))];function draw(){chips.innerHTML=cats.map(x=>`<button class="${cat===x?'on':''}" onclick="cat='${x}';draw()">${x}</button>`).join('');let s=q.value.toLowerCase();grid.innerHTML=z.filter(x=>(cat==='全部'||x.c===cat)&&(x.zh+x.en+x.f).toLowerCase().includes(s)).map(x=>`<article class="card ${done.includes(x.id)?'done':''}"><div class="top"><span>${String(x.id).padStart(2,'0')} · ${x.c}</span><button onclick="say('${x.en.replaceAll("'","\\'")} ${x.fe.replaceAll("'","\\'")}')">▶ EN</button></div><h3>${x.zh}</h3><p class="en">${x.en}</p><div class="fix"><small>MINIMUM INTERVENTION</small><b>${x.f}</b><p>${x.fe}</p></div><div class="bottom"><button onclick="toggle(${x.id})">${done.includes(x.id)?'✓ 已完成':'標記完成'}</button></div></article>`).join('')}function toggle(id){done=done.includes(id)?done.filter(x=>x!==id):[...done,id];localStorage.setItem('chos-index',JSON.stringify(done));draw()}q.oninput=draw;draw();
+</script></body></html>
